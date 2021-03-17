@@ -73,17 +73,13 @@ class Projectiles:
 
         self.speed = 100
 
+    # this part of the script it's just a test so it doesn't works perfectly
     def Update (self, dt) -> None:
         dir_ = pyg.math.Vector2(pyg.mouse.get_pos()) - pyg.math.Vector2(self.posX, self.posY)
         dir_ang = math.atan2(dir_.y, dir_.x)
 
         self.shape.x += math.cos(dir_ang) * dt
         self.shape.y += math.sin(dir_ang) * dt
-        
-        # self.shape.move(pyg.mouse.get_pos()[0] * 100, pyg.mouse.get_pos()[1] * 100)
-        # print(f'x: { pyg.mouse.get_pos()[0] - self.posX }\ny: {pyg.mouse.get_pos()[1] - self.posY}')
-        
-        # self.shape.move((dir_.x / dt) * (-1), (dir_.y / dt) * (-1))
 
     def Render (self, screen) -> None:
         pyg.draw.rect(screen, self.color, self.shape)

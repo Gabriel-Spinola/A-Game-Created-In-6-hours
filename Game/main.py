@@ -144,7 +144,7 @@ class Game:
         self.enemies = []
         self.enemiesAmount = 10
 
-        for i in range(self.enemiesAmount):
+        for i in range(10):
             self.enemies.append(Enemy(random.randrange(40, WIDTH - 40), random.randrange(40, HEIGHT - 40), 32, 32, RED))
 
         self.screenSize = WIDTH, HEIGHT
@@ -164,6 +164,8 @@ class Game:
                         del self.enemies[i - 1]
                         del self.player.bullets[k - 1]
 
+                        self.enemiesAmount -= 1
+
                         return
 
         if len(self.player.bullets) >= 1:
@@ -172,7 +174,11 @@ class Game:
                         self.player.bullets[i - 1].shape.bottom > HEIGHT or self.player.bullets[i - 1].shape.y < 0:
                     del self.player.bullets[i - 1]
 
-                print(len(self.player.bullets))
+    def SpawnEnemies(self):
+        if self.enemiesAmount <= 8:
+            self.enemiesAmount += 1
+
+            self.enemies.append(Enemy(random.randrange(40, WIDTH - 40), random.randrange(40, HEIGHT - 40), 32, 32, RED))
 
     def Update (self) -> None:
         for event in pyg.event.get():
@@ -185,6 +191,7 @@ class Game:
         delta_time = self.clock.tick(self.fps)
 
         self.CollisionOuter()
+        self.SpawnEnemies()
 
         self.player.Update(delta_time)
 

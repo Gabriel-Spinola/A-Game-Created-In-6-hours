@@ -1,4 +1,4 @@
-# A-Game-Created-In-8-hours
+# A-Game-Created-In-6-hours
  
 I was bored, so I created a game with a language that I never used in 6 hours or less, in fact, I don't remember. <br>
 At least it was fun
